@@ -1,6 +1,9 @@
 package edu.cs4240.GUI;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
+
+
+
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -29,6 +32,7 @@ public class MainJFrame extends javax.swing.JFrame {
 	private JTextField QueryJTextField;
 	private JButton SearchJButton;
 
+
 	{
 		//Set Look & Feel
 		try {
@@ -52,6 +56,7 @@ public class MainJFrame extends javax.swing.JFrame {
 		try {
 			AnchorLayout thisLayout = new AnchorLayout();
 			getContentPane().setLayout(thisLayout);
+			setTitle("Search Tweets");
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
 				SearchJButton = new JButton();
@@ -85,17 +90,17 @@ public class MainJFrame extends javax.swing.JFrame {
 	}
 	
 	private void SearchJButtonMouseClicked(MouseEvent evt) {
-		System.out.println("SearchJButton.mouseClicked, event="+evt);
-		Search();
+		if(!(QueryJTextField.getText().isEmpty()))
+			notifyController();
 	}
 	
 	private void QueryJTextFieldKeyPressed(KeyEvent evt) {
-		System.out.println("QueryJTextField.keyPressed, event="+evt);
-		Search();
+		if((evt.getKeyCode()==10) && (!(QueryJTextField.getText().isEmpty())))
+			notifyController();
 	}
 	
-	private void Search(){
-		//do something with Query QueryJTextField.getText()
+	private void notifyController(){
+		
 	
 	}
 
