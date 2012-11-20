@@ -1,4 +1,4 @@
-package edu.cs4240.GUI;
+package edu.virginia.cs4240.GUI;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 

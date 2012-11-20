@@ -1,4 +1,4 @@
-package edu.cs4240.GUI;
+package edu.virginia.cs4240.GUI;
 import java.awt.BorderLayout;
 import javax.swing.JTextPane;
 

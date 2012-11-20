@@ -1,4 +1,4 @@
-package edu.cs4240.Engine;
+package edu.virginia.cs4240.Engine;
 import twitter4j.Status;
 
 public class Tweet {

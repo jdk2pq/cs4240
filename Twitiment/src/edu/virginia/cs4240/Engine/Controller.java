@@ -1,7 +1,7 @@
-package edu.cs4240.Engine;
+package edu.virginia.cs4240.Engine;
 
 
-import edu.cs4240.GUI.MainJFrame;
+import edu.virginia.cs4240.GUI.MainJFrame;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
