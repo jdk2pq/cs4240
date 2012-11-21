@@ -2,9 +2,12 @@ package edu.virginia.cs4240.GUI;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 
+import edu.virginia.cs4240.Engine.TwitterModel;
+
 
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -29,8 +32,9 @@ import javax.swing.SwingUtilities;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class MainJFrame extends javax.swing.JFrame {
-	private JTextField QueryJTextField;
-	private JButton SearchJButton;
+	private JTextField queryJTextField;
+	private JButton searchJButton;
+	private TwitterModel model;
 
 
 	{
@@ -47,8 +51,9 @@ public class MainJFrame extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 		
-	public MainJFrame() {
+	public MainJFrame(TwitterModel m) {
 		super();
+		model = m;
 		initGUI();
 	}
 	
@@ -59,27 +64,19 @@ public class MainJFrame extends javax.swing.JFrame {
 			setTitle("Search Tweets");
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
-				SearchJButton = new JButton();
+				searchJButton = new JButton();
 				AnchorLayout SearchJButtonLayout = new AnchorLayout();
-				SearchJButton.setLayout(SearchJButtonLayout);
-				getContentPane().add(SearchJButton, new AnchorConstraint(570, 986, 674, 701, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				SearchJButton.setText("Search");
-				SearchJButton.setPreferredSize(new java.awt.Dimension(114, 29));
-				SearchJButton.addMouseListener(new MouseAdapter() {
-					public void mouseClicked(MouseEvent evt) {
-						SearchJButtonMouseClicked(evt);
-					}
-				});
+				searchJButton.setLayout(SearchJButtonLayout);
+				getContentPane().add(searchJButton, new AnchorConstraint(570, 986, 674, 701, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				searchJButton.setText("Search");
+				searchJButton.setPreferredSize(new java.awt.Dimension(114, 29));
+				
 			}
 			{
-				QueryJTextField = new JTextField();
-				getContentPane().add(QueryJTextField, new AnchorConstraint(422, 1001, 526, 6, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
-				QueryJTextField.setPreferredSize(new java.awt.Dimension(394, 29));
-				QueryJTextField.addKeyListener(new KeyAdapter() {
-					public void keyPressed(KeyEvent evt) {
-						QueryJTextFieldKeyPressed(evt);
-					}
-				});
+				queryJTextField = new JTextField();
+				getContentPane().add(queryJTextField, new AnchorConstraint(422, 1001, 526, 6, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_ABS));
+				queryJTextField.setPreferredSize(new java.awt.Dimension(394, 29));
+			
 			}
 			pack();
 			setSize(400, 300);
@@ -89,19 +86,24 @@ public class MainJFrame extends javax.swing.JFrame {
 		}
 	}
 	
-	private void SearchJButtonMouseClicked(MouseEvent evt) {
-		if(!(QueryJTextField.getText().isEmpty()))
-			notifyController();
+	
+	public void reset(){
+		queryJTextField.setText("");
 	}
 	
-	private void QueryJTextFieldKeyPressed(KeyEvent evt) {
-		if((evt.getKeyCode()==10) && (!(QueryJTextField.getText().isEmpty())))
-			notifyController();
+	public String getQuery(){
+		return queryJTextField.getText();
 	}
 	
-	private void notifyController(){
-		
-	
+	public void addKeyListener(ActionListener k){
+		queryJTextField.addActionListener(k);
 	}
+	
+	public void addButtonListener(ActionListener b){
+		searchJButton.addActionListener(b);
+	}
+
+	
+
 
 }

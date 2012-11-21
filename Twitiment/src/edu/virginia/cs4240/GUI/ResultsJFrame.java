@@ -1,9 +1,14 @@
 package edu.virginia.cs4240.GUI;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+
 import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
 
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
+
+import edu.virginia.cs4240.Engine.Tweet;
 
 
 /**
@@ -20,13 +25,16 @@ import javax.swing.SwingUtilities;
 */
 public class ResultsJFrame extends javax.swing.JFrame {
 	private JTextPane ResultsJTextPane;
+	private JScrollPane scrollPane;
+	private ArrayList<Tweet> tweets;
 
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
 		
-	public ResultsJFrame() {
+	public ResultsJFrame(ArrayList<Tweet> t) {
 		super();
+		tweets = t;
 		initGUI();
 	}
 	
@@ -35,10 +43,16 @@ public class ResultsJFrame extends javax.swing.JFrame {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
 				ResultsJTextPane = new JTextPane();
-				getContentPane().add(ResultsJTextPane, BorderLayout.CENTER);
+				String allResults = "";
+				for(Tweet t : tweets)
+					allResults += t.getStatus() + "\n\n";
+				ResultsJTextPane.setText(allResults);
+				scrollPane = new JScrollPane(ResultsJTextPane);
+				
+				getContentPane().add(scrollPane, BorderLayout.CENTER);
 			}
 			pack();
-			setSize(400, 300);
+			setSize(800, 800);
 		} catch (Exception e) {
 		    //add your error handling code here
 			e.printStackTrace();
