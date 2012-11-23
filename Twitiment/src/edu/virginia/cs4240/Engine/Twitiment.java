@@ -9,7 +9,6 @@ public class Twitiment {
 		TwitterModel model = new TwitterModel();
 		MainJFrame view = new MainJFrame(model);
 		Controller controller = new Controller(model, view);
-		
 		view.setVisible(true);
 		
 	}
