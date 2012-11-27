@@ -15,7 +15,7 @@ public class Sentiment {
 	 */
 	public Sentiment(int positiveOrNegative, String reason) {
 		this.setPositiveOrNegative(positiveOrNegative);
-		this.setReason("the tweet contained the emoticon \"" + reason);
+		this.setReason("the tweet contained the emoticon \" " + reason);
 	}
 
 	public void setPositiveOrNegative(int positiveOrNegative) {

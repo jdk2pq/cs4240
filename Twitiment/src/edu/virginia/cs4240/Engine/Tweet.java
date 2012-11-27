@@ -53,7 +53,7 @@ public class Tweet {
 		if (this.getSentiment().getPositiveOrNegative() == 1) {
 			return "positive";
 		} else if (this.getSentiment().getPositiveOrNegative() == 0) {
-			return "false";
+			return "negative";
 		} else {
 			return "not sure";
 		}

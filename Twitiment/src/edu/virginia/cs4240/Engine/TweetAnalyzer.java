@@ -2,6 +2,8 @@
  * TweetAnalyzer performs the analysis of sentiment on a given tweet.
  */
 package edu.virginia.cs4240.Engine;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,14 +28,19 @@ public class TweetAnalyzer {
 	 *  Populates the lists of emoticons that will be used in the tweet analysis.
 	 */
 	private void populateEmoticons() {
-		Scanner scanSad = new Scanner("sad.txt");
-		Scanner scanHappy = new Scanner("happy.txt");
-		while (scanSad.hasNextLine()) {
-			this.getSadEmoticons().add(scanSad.nextLine());
+		Scanner scanSad, scanHappy;
+		try {
+			scanSad = new Scanner(new File("sad.txt"));
+			scanHappy = new Scanner(new File("happy.txt"));
+			while (scanSad.hasNextLine()) {
+				this.getSadEmoticons().add(scanSad.nextLine());
+			}
+			while (scanHappy.hasNextLine()) {
+				this.getHappyEmoticons().add(scanHappy.nextLine());
+			}	
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		while (scanHappy.hasNextLine()) {
-			this.getHappyEmoticons().add(scanHappy.nextLine());
-		}	
 	}
 	
 	/**
