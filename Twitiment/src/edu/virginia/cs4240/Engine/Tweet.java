@@ -8,7 +8,7 @@ import twitter4j.Status;
 public class Tweet {
 	private String userName;
 	private String status;
-	private Sentiment sentiment = null;
+	private Sentiment sentiment = new Sentiment();
 	
 	/**
 	 * The constructor for a Tweet. Takes a Twitter4J Status and sets the Tweet's userName
@@ -49,13 +49,7 @@ public class Tweet {
 		this.status = status;
 	}
 
-	public String getPositiveOrNegative() {
-		if (this.getSentiment().getPositiveOrNegative() == 1) {
-			return "positive";
-		} else if (this.getSentiment().getPositiveOrNegative() == 0) {
-			return "negative";
-		} else {
-			return "not sure";
-		}
+	public int getScore() {
+		return this.getSentiment().getScore();
 	}
 }

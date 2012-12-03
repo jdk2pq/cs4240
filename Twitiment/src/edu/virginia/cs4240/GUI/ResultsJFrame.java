@@ -46,7 +46,7 @@ public class ResultsJFrame extends javax.swing.JFrame {
 				String allResults = "";
 				for(Tweet t : tweets){
 					allResults += t.getUserName() + " said " + t.getStatus() + ". \n";
-					allResults += "We think this is " + t.getPositiveOrNegative() + " because " + t.getReason() + ". \n\n";
+					allResults += "We think this is " + t.getScore() + " because " + t.getReason() + ". \n\n";
 				}
 				ResultsJTextPane.setText(allResults);
 				scrollPane = new JScrollPane(ResultsJTextPane);

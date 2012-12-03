@@ -4,7 +4,7 @@
 package edu.virginia.cs4240.Engine;
 
 public class Sentiment {
-	private int positiveOrNegative;
+	private int score;
 	private String reason;
 
 	/**
@@ -13,25 +13,32 @@ public class Sentiment {
 	 * @param boolean positiveOrNegative - true for positive, false for negative
 	 * @param String reason - the reason for which we think the tweet is positive or negative
 	 */
-	public Sentiment(int positiveOrNegative, String reason) {
-		this.setPositiveOrNegative(positiveOrNegative);
-		this.setReason("the tweet contained the emoticon \" " + reason);
-	}
-
-	public void setPositiveOrNegative(int positiveOrNegative) {
-		this.positiveOrNegative = positiveOrNegative;
-	}
-
+	
 	public Sentiment() {
-		this.setPositiveOrNegative(-1);
-		this.setReason ("the tweet did not contain an emoticon.");
+		this.score = 0;
 	}
 
-	public int getPositiveOrNegative() {
-		return positiveOrNegative;
+	public void increase(int amt) {
+		this.score +=amt;
+	}
+
+	public void decrease(int amt){
+		this.score -=amt;
+	}
+
+
+	public int getScore() {
+		return score;
 	}
 
 	public String getReason() {
+		if(score>0)
+			this.reason= "Positive Tweet";
+		else if(score<0)
+			this.reason = "Negative Tweet";
+		else
+			this.reason = "Neutral Tweet";
+		
 		return reason;
 	}
 
