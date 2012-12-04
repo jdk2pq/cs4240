@@ -1,14 +1,9 @@
 package edu.virginia.cs4240.GUI;
 import java.awt.BorderLayout;
-import java.util.ArrayList;
 
-import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
-
+import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
-
-import edu.virginia.cs4240.Engine.Tweet;
 
 
 /**
@@ -24,17 +19,23 @@ import edu.virginia.cs4240.Engine.Tweet;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class ResultsJFrame extends javax.swing.JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextPane ResultsJTextPane;
 	private JScrollPane scrollPane;
-	private ArrayList<Tweet> tweets;
+	private int score;
+	private String reason;
 
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
 		
-	public ResultsJFrame(ArrayList<Tweet> t) {
+	public ResultsJFrame(int s, String r) {
 		super();
-		tweets = t;
+		score = s;
+		reason = r;
 		initGUI();
 	}
 	
@@ -43,12 +44,8 @@ public class ResultsJFrame extends javax.swing.JFrame {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
 				ResultsJTextPane = new JTextPane();
-				String allResults = "";
-				for(Tweet t : tweets){
-					allResults += t.getUserName() + " said " + t.getStatus() + ". \n";
-					allResults += "We think this is " + t.getScore() + " because " + t.getReason() + ". \n\n";
-				}
-				ResultsJTextPane.setText(allResults);
+				String result = "This search term has a score of "+ score+" indicating a "+reason+" feel on twitter.";
+				ResultsJTextPane.setText(result);
 				scrollPane = new JScrollPane(ResultsJTextPane);
 				
 				getContentPane().add(scrollPane, BorderLayout.CENTER);

@@ -1,5 +1,8 @@
 /**
- * This class serves as an Adapter class to Twitter4J's implementation of searching for tweets.
+ * This class serves as an Adapter class to Twitter4J's Library.
+ * This class provides mainly search functions from said Library.
+ * 
+ * @author Jake
  */
 package edu.virginia.cs4240.Engine;
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ public class Search {
 	/**
 	 * Constructor to perform a new search. Takes a String searchTerm and creates a
 	 * Query instance of that searchTerm.
-	 * @param String searchTerm - the searchTerm to use when querying Twitter
+	 * @param searchTerm  The searchTerm to use when querying Twitter
 	 */
 	public Search(String searchTerm) {
 		this.setSearchTerm(searchTerm);
@@ -27,6 +30,8 @@ public class Search {
 	 * Performs search on given search term. First, sets the result count to 100,
 	 * then, tries to perform the search by querying the twitter instance. If a search
 	 * cannot be performed, a TwitterException is thrown and caught.
+	 * 
+	 * @exception TwitterException search could not be preformed.
 	 */
 	private void performSearch() {
 		this.getQuery().setCount(100);
@@ -51,46 +56,91 @@ public class Search {
 		}
 	}
 	
+	/**
+	 * Gets the Tweets
+	 * @return tweets
+	 */
 	public ArrayList<Tweet> getTweets() {
 		return tweets;
 	}
 
+	/**
+	 * Sets the tweets
+	 * @param tweets
+	 */
 	public void setTweets(ArrayList<Tweet> tweets) {
 		this.tweets = tweets;
 	}
 
+	/**
+	 * Gets the statuses
+	 * @return statuses
+	 */
 	public java.util.List<Status> getStatuses() {
 		return statuses;
 	}
 
+	/**
+	 * sets the statuses
+	 * @param statuses
+	 */
 	public void setStatuses(java.util.List<Status> statuses) {
 		this.statuses = statuses;
 	}
 
+	/**
+	 * gets the Search term
+	 * @return searchTerm
+	 */
 	public String getSearchTerm() {
 		return searchTerm;
 	}
 
+	/**
+	 * sets the Search Term
+	 * @param searchTerm
+	 */
 	public void setSearchTerm(String searchTerm) {
 		this.searchTerm = searchTerm;
 	}
 
+	/**
+	 * Gets the query
+	 * @return query
+	 */
 	public Query getQuery() {
 		return query;
 	}
 
+	/**
+	 * Sets the query
+	 * @param query
+	 */
 	public void setQuery(Query query) {
 		this.query = query;
 	}
 
+	/**
+	 * Gets the results
+	 * @return results
+	 */
 	public QueryResult getResults() {
 		return results;
 	}
 
+	/**
+	 * Sets the results
+	 * @param results
+	 */
 	public void setResults(QueryResult results) {
 		this.results = results;
 	}
 
+	/**
+	 * Gets a single tweet at specified index i.
+	 * @param i the specified index
+	 * @return tweet
+	 */
 	public Tweet getSingleTweet(int i) {
 		return this.getTweets().get(i);
 	}

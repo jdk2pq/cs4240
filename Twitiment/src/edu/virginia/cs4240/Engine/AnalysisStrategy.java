@@ -1,5 +1,8 @@
 /**
  * Interface for the analysis strategy to use in analyzing tweets for sentiment.
+ * This is a part of a strategy design implementation.
+ * 
+ * @author Jake
  */
 
 package edu.virginia.cs4240.Engine;
@@ -7,9 +10,11 @@ package edu.virginia.cs4240.Engine;
 import java.util.ArrayList;
 
 public interface AnalysisStrategy {	
+	
 	/**
 	 * Performs the actual analysis of the tweets for sentiment.
-	 * @param Tweet tweet - the tweet to perform analysis on
+	 * @param tweet  The tweet to perform analysis on
+	 * @return score of sentiment
 	 */
 	public int performAnalysis(Tweet tweet);
 	
@@ -20,13 +25,13 @@ public interface AnalysisStrategy {
 	
 	/**
 	 * Returns the negative list
-	 * @return ArrayList<String> negative
+	 * @return arraylist of negative entities
 	 */
 	public ArrayList<String> getNegative();
 	
 	/**
 	 * Returns the positive list
-	 * @return ArrayList<String> positive
+	 * @return arraylist of positive entitites
 	 */
 	public ArrayList<String> getPositive();
 

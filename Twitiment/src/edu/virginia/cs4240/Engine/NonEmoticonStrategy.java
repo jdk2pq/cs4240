@@ -1,5 +1,8 @@
 /**
  * Implementation of AnalysisStrategy Interface to analyze tweets by looking through a list of good and bad words
+ * This is a part of a Strategy Design Implementation.
+ * 
+ * @author Jake
  */
 package edu.virginia.cs4240.Engine;
 
@@ -50,10 +53,6 @@ public class NonEmoticonStrategy implements AnalysisStrategy {
 			}	
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
-		
-		for(int i=0; i<positive.size(); i++){
-			System.out.println(positive.get(i));
 		}
 	}
 	

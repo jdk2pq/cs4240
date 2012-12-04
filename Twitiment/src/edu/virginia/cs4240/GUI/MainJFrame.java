@@ -1,22 +1,14 @@
 package edu.virginia.cs4240.GUI;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 
 import edu.virginia.cs4240.Engine.TwitterModel;
-
-
-
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-
-import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
 
 
 /**
@@ -32,8 +24,13 @@ import javax.swing.SwingUtilities;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class MainJFrame extends javax.swing.JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField queryJTextField;
 	private JButton searchJButton;
+	@SuppressWarnings("unused")
 	private TwitterModel model;
 
 

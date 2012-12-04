@@ -1,5 +1,8 @@
 /**
  * Implementation of AnalysisStrategy Interface to analyze tweets for Emoticons
+ * This is a part of a strategy design implementation.
+ * 
+ * @author Jake
  */
 package edu.virginia.cs4240.Engine;
 
@@ -14,6 +17,8 @@ public class EmoticonStrategy implements AnalysisStrategy {
 	private String negFile = "negEmotes.txt";
 	private ArrayList<String> negative = new ArrayList<String>();
 	private ArrayList<String> positive = new ArrayList<String>();
+	
+	
 	public EmoticonStrategy() {
 		populateLists();
 	}
