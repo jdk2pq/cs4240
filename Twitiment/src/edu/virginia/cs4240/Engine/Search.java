@@ -1,5 +1,5 @@
 /**
- * This class serves as an Adapter class to Twitter4J's Library.
+ * This class serves as an Facade class to Twitter4J's Library.
  * This class provides mainly search functions from said Library.
  * 
  * @author Jake
