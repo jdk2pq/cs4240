@@ -66,7 +66,4 @@ public class NonEmoticonStrategy implements AnalysisStrategy {
 	public ArrayList<String> getPositive() {
 		return this.positive;
 	}
-	
-
-
 }

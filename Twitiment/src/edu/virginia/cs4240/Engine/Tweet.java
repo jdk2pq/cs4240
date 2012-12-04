@@ -1,5 +1,5 @@
 /**
- * Tweet class. Adapts the Twitter4J Status class to something more relevant (only needing
+ * Tweet class. Wraps the Twitter4J Status class to something more relevant (only needing
  * a userName and actual text of the status) and easier to use.
  * @author Jake
  */
@@ -10,6 +10,7 @@ public class Tweet {
 	private String userName;
 	private String status;
 	private Sentiment sentiment = new Sentiment();
+	private AnalysisStrategy strategy;
 	
 	/**
 	 * The constructor for a Tweet. Takes a Twitter4J Status and sets the Tweet's userName
@@ -17,9 +18,10 @@ public class Tweet {
 	 * like to work with at the moment, in addition to the Tweet's sentiment.
 	 * @param status - a Twitter4J Status class to use in constructing the Tweet
 	 */
-	public Tweet(Status status) {
+	public Tweet(Status status, AnalysisStrategy strategy) {
 		this.setUserName(status.getUser().getName());
 		this.setStatus(status.getText());
+		this.setStrategy(strategy);
 	}
 	
 	/**
@@ -84,6 +86,15 @@ public class Tweet {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	/**
+	 * Set the AnalysisStrategy of a tweet.
+	 * 
+	 * @param status
+	 */
+	public void setStrategy(AnalysisStrategy strategy) {
+		this.strategy = strategy;
+	}
 
 	/**
 	 * Get Sentiment score of a tweet.
@@ -92,5 +103,9 @@ public class Tweet {
 	 */
 	public int getScore() {
 		return this.getSentiment().getScore();
+	}
+	
+	public int performAnalysis() {
+		return this.strategy.performAnalysis(this);
 	}
 }

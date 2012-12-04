@@ -37,7 +37,6 @@ public class EmoticonStrategy implements AnalysisStrategy {
 				sentiment.increase(1);
 			}
 		}	
-		
 		return sentiment.getScore();
 	}
 

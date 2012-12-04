@@ -12,7 +12,6 @@ public class Sentiment {
 	/**
 	 * Constructor used for Sentiment. The default score is 0, indicating neutral.
 	 */
-	
 	public Sentiment() {
 		this.score = 0;
 	}
@@ -22,15 +21,15 @@ public class Sentiment {
 	 * @param amt The amount to increase the sentiment.
 	 */
 	public void increase(int amt) {
-		this.score +=amt;
+		this.score += amt;
 	}
 
 	/**
 	 * Decreases the sentiment by the amt.
 	 * @param amt The amount to decrease the sentiment.
 	 */
-	public void decrease(int amt){
-		this.score -=amt;
+	public void decrease(int amt) {
+		this.score -= amt;
 	}
 
 	/**
@@ -46,13 +45,15 @@ public class Sentiment {
 	 * @return reason
 	 */
 	public String getReason() {
-		if(score>0)
+		if (score > 0) {
 			this.reason= "Positive Tweet";
-		else if(score<0)
+		}
+		else if (score < 0) {
 			this.reason = "Negative Tweet";
-		else
+		}
+		else {
 			this.reason = "Neutral Tweet";
-		
+		}
 		return reason;
 	}
 
@@ -63,5 +64,4 @@ public class Sentiment {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-
 }

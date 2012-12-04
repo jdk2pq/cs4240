@@ -44,7 +44,7 @@ public class ResultsJFrame extends javax.swing.JFrame {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			{
 				ResultsJTextPane = new JTextPane();
-				String result = "This search term has a score of "+ score+" indicating a "+reason+" feel on twitter.";
+				String result = "This search term has a score of "+ score +" indicating a "+reason+" feel on twitter.";
 				ResultsJTextPane.setText(result);
 				scrollPane = new JScrollPane(ResultsJTextPane);
 				
@@ -53,8 +53,7 @@ public class ResultsJFrame extends javax.swing.JFrame {
 			pack();
 			setSize(800, 800);
 		} catch (Exception e) {
-		    //add your error handling code here
-			e.printStackTrace();
+		    System.out.println("Could not start the GUI for the ResultsFrame!");
 		}
 	}
 

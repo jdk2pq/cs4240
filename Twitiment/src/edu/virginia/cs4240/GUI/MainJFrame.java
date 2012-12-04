@@ -78,8 +78,7 @@ public class MainJFrame extends javax.swing.JFrame {
 			pack();
 			setSize(400, 300);
 		} catch (Exception e) {
-		    //add your error handling code here
-			e.printStackTrace();
+		    System.out.println("Could not start the GUI for the MainJFrame!");
 		}
 	}
 	

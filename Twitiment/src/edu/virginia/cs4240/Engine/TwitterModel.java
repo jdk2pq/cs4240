@@ -4,55 +4,29 @@
  * 
  * @author Josh
  */
-
 package edu.virginia.cs4240.Engine;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import edu.virginia.cs4240.Engine.Search;
-import edu.virginia.cs4240.Engine.Tweet;
 
 public class TwitterModel {
 
 	Search search; 
-	AnalysisStrategy emoticonAnalyzer = new EmoticonStrategy();
-	AnalysisStrategy nonEmoticonAnalyzer = new NonEmoticonStrategy();
-	int globalScore =0;
-	private ArrayList<String> emotes;
-	
+	int globalScore = 0;
+
 	/**
 	 * Constructor TwitterModel initializes a list of emoticons that is used to check if a tweet contains any.
 	 */
 	public TwitterModel() {
 		reset();
-		
-		Scanner scanner;
-		emotes = new ArrayList<String>();
-		try {
-			scanner = new Scanner(new File("negEmotes.txt"));
-			while (scanner.hasNextLine()) {
-				emotes.add(scanner.nextLine());
-			}
-			scanner = new Scanner(new File("posEmotes.txt"));
-			while (scanner.hasNextLine()) {
-				emotes.add(scanner.nextLine());
-			}	
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
 	}
-	
+
 	/**
 	 * Unused method.
 	 */
 	public void reset() {
-		
+
 	}
-	
+
 	/**
 	 * Query will search the twittersphere given user input. It then selects the appropriate strategy
 	 * to determine the sentiment score of a tweet.
@@ -61,24 +35,12 @@ public class TwitterModel {
 	 */
 	public void query(String q) {
 		this.search = new Search(q);
-		boolean containEmote = false;
-		for (int i = 0; i < search.getTweets().size(); i++) {
-			containEmote = false;
-			String[] tweetWords = search.getSingleTweet(i).getStatus().split(" ");
-			for (String word : tweetWords) {
-				if(emotes.contains(word))
-					containEmote = true;
-			}
-				if(containEmote){
-					globalScore +=  emoticonAnalyzer.performAnalysis(search.getSingleTweet(i));
-				}
-				else{
-					globalScore +=  nonEmoticonAnalyzer.performAnalysis(search.getSingleTweet(i));
-				}
-			}
+		for (Tweet tweet : search.getTweets()) {
+			globalScore += tweet.performAnalysis();
 		}
-		
-	
+	}
+
+
 	/**
 	 * Gets the tweets from a search.
 	 * @return tweets
@@ -95,6 +57,13 @@ public class TwitterModel {
 		return globalScore;
 	}	
 	
+	/**
+	 * Resets the globalScore to 0 for a new search.
+	 */
+	public void resetGlobalScore() {
+		this.globalScore = 0;
+	}	
+
 	/**
 	 * Gets the sentiment reason of a search.
 	 * @return sentiment

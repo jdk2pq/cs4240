@@ -5,7 +5,11 @@
  * @author Jake
  */
 package edu.virginia.cs4240.Engine;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import twitter4j.*;
 
 public class Search {
@@ -14,6 +18,9 @@ public class Search {
 	private QueryResult results;
 	private java.util.List<Status> statuses;
 	private ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+	private ArrayList<String> emotes;
+	private AnalysisStrategy emoticonAnalyzer = new EmoticonStrategy();
+	private AnalysisStrategy nonEmoticonAnalyzer = new NonEmoticonStrategy();
 	
 	/**
 	 * Constructor to perform a new search. Takes a String searchTerm and creates a
@@ -31,7 +38,7 @@ public class Search {
 	 * then, tries to perform the search by querying the twitter instance. If a search
 	 * cannot be performed, a TwitterException is thrown and caught.
 	 * 
-	 * @exception TwitterException search could not be preformed.
+	 * @exception TwitterException search could not be performed.
 	 */
 	private void performSearch() {
 		this.getQuery().setCount(100);
@@ -46,16 +53,58 @@ public class Search {
 	
 	/**
 	 * Transforms results from List<Status> to an ArrayList of Tweets. Basically, this
-	 * adapts Twitter4J's Status class to our own Tweet adapter class.
+	 * adapts Twitter4J's Status class to our own Tweet class.
 	 */
 	private void transformResults() {
+		Tweet tweet;
 		this.setStatuses(results.getTweets());
 		for (Status status : this.statuses) {
-			Tweet tweet = new Tweet(status);
+			if (this.tweetContainsEmoticons(status)) {
+				tweet = new Tweet(status, emoticonAnalyzer);
+			}
+			else {
+				tweet = new Tweet(status, nonEmoticonAnalyzer);
+			}
 			tweets.add(tweet);
 		}
 	}
 	
+	/**
+	 * Checks to see if the specified tweet contains an emoticon.
+	 * @param status
+	 * @return true if there is an emoticon, false otherwise
+	 */
+	private boolean tweetContainsEmoticons(Status status) {
+		this.populateList();
+		String[] tweetWords = status.getText().split(" ");
+		for (String word : tweetWords) {
+			if (this.emotes.contains(word)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Populates the list of emoticons.
+	 */
+	private void populateList() {
+		Scanner scanner;
+		this.emotes = new ArrayList<String>();
+		try {
+			scanner = new Scanner(new File("negEmotes.txt"));
+			while (scanner.hasNextLine()) {
+				this.emotes.add(scanner.nextLine());
+			}
+			scanner = new Scanner(new File("posEmotes.txt"));
+			while (scanner.hasNextLine()) {
+				this.emotes.add(scanner.nextLine());
+			}	
+		} catch (FileNotFoundException e) {
+			System.out.println("I couldn't find the file!");
+		}		
+	}
+
 	/**
 	 * Gets the Tweets
 	 * @return tweets

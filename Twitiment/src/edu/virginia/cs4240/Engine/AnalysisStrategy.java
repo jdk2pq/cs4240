@@ -31,7 +31,7 @@ public interface AnalysisStrategy {
 	
 	/**
 	 * Returns the positive list
-	 * @return arraylist of positive entitites
+	 * @return arraylist of positive entities
 	 */
 	public ArrayList<String> getPositive();
 

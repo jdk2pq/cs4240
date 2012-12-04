@@ -3,15 +3,10 @@
  * 
  * @author Josh
  */
-
-
-
 package edu.virginia.cs4240.Engine;
-
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import edu.virginia.cs4240.GUI.MainJFrame;
 import edu.virginia.cs4240.GUI.ResultsJFrame;
 
@@ -21,7 +16,7 @@ public class Controller {
 	private MainJFrame view;
 
 	/**
-	 * The Constructor for Controller. It takes in a model and view so as to interact with the two compomenents.
+	 * The Constructor for Controller. It takes in a model and view so as to interact with the two components.
 	 * This constructor also adds action listeners so that it can tell when the user submits a query.
 	 * 
 	 * @param m the model
@@ -43,6 +38,7 @@ public class Controller {
 	private void Search(){
 		model.query(view.getQuery());
 		ResultsJFrame results = new ResultsJFrame(model.getGlobalScore(), model.getSentiment());
+		model.resetGlobalScore();
 		results.setVisible(true);
 	}
 	
@@ -74,7 +70,6 @@ public class Controller {
 	 * @author Josh
 	 *
 	 */
-
 	class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			if(!view.getQuery().isEmpty()){
