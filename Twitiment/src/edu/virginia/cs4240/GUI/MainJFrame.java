@@ -30,8 +30,6 @@ public class MainJFrame extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField queryJTextField;
 	private JButton searchJButton;
-	@SuppressWarnings("unused")
-	private TwitterModel model;
 
 
 	{
@@ -48,9 +46,8 @@ public class MainJFrame extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 		
-	public MainJFrame(TwitterModel m) {
+	public MainJFrame() {
 		super();
-		model = m;
 		initGUI();
 	}
 	
