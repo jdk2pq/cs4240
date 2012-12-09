@@ -17,24 +17,6 @@ public interface AnalysisStrategy {
 	 * @return score of sentiment
 	 */
 	public int performAnalysis(Tweet tweet);
-	
-	/**
-	 *  Populates the lists that will be used in the tweet analysis.
-	 */
-	public void populateLists();
-	
-	/**
-	 * Returns the negative list
-	 * @return arraylist of negative entities
-	 */
-	public ArrayList<String> getNegative();
-	
-	/**
-	 * Returns the positive list
-	 * @return arraylist of positive entities
-	 */
-	public ArrayList<String> getPositive();
-
 }
 
 

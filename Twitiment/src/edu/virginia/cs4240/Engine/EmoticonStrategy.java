@@ -40,7 +40,6 @@ public class EmoticonStrategy implements AnalysisStrategy {
 		return sentiment.getScore();
 	}
 
-	@Override
 	public void populateLists() {
 		Scanner scanNeg, scanPos;
 		try {
@@ -57,12 +56,10 @@ public class EmoticonStrategy implements AnalysisStrategy {
 		}
 	}
 
-	@Override
 	public ArrayList<String> getNegative() {
 		return this.negative;
 	}
 
-	@Override
 	public ArrayList<String> getPositive() {
 		return this.positive;
 	}
